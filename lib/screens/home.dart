@@ -20,6 +20,13 @@ class _HomeState extends State<Home> {
     List<Widget> out = [];
     if (s == []) return out;
     s.forEach((element) {
+      Color c1;
+      if (out.length % 3 == 0)
+        c1 = Color(0xFFD82D40);
+      else if (out.length % 3 == 1)
+        c1 = Color(0xFF90AF17);
+      else
+        c1 = Color(0xFF2DBBD8);
       out.add(GestureDetector(
         onTap: () {
           Navigator.push(
@@ -28,64 +35,109 @@ class _HomeState extends State<Home> {
                   builder: (context) => Details(element.payee, s)));
         },
         child: Padding(
-          padding: const EdgeInsets.all(8.0),
+          padding: const EdgeInsets.fromLTRB(10, 6, 10, 6), // card padding
           child: Card(
-            margin: EdgeInsets.all(10),
-            color: Color(0xffd82d40),
+            margin: EdgeInsets.fromLTRB(1, 1, 1, 1), // card margin
+            color: c1,
             shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(8),
+              borderRadius: BorderRadius.circular(9),
             ),
             elevation: 0,
             child: Padding(
-              padding: const EdgeInsets.all(3),
-              child: Column(
+              padding: const EdgeInsets.fromLTRB(1, 1, 1, 1), // row padding
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Row(
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
-                        element.payee,
-                        style: TextStyle(color: Colors.white, fontSize: 20),
+                      Padding(
+                        padding: const EdgeInsets.fromLTRB(
+                            10, 14, 0, 0), // name padding
+                        child: Text(
+                          element.payee,
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 21,
+                            fontWeight: FontWeight.values[3],
+                          ),
+                        ),
                       ),
-                      Container(
-                        width: 150,
-                      ),
-                      Text(
-                        element.sum.toString(),
-                        style: TextStyle(color: Colors.white, fontSize: 25),
-                      )
-                    ],
-                  ),
-                  Row(
-                    children: [
                       if (element.sum < 0)
-                        Text(
-                          'Due',
-                          style: TextStyle(fontSize: 18, color: Colors.white),
+                        Padding(
+                          padding: const EdgeInsets.fromLTRB(
+                              10, 4, 0, 20), // due padding
+                          child: Text(
+                            'Due',
+                            style: TextStyle(
+                              fontSize: 17,
+                              color: Colors.white,
+                              fontWeight: FontWeight.values[2],
+                              fontFamily: 'Lato-Light',
+                            ),
+                          ),
                         )
                       else if (element.sum > 0)
-                        Text(
-                          'Give',
-                          style: TextStyle(fontSize: 18, color: Colors.white),
+                        Padding(
+                          padding: const EdgeInsets.fromLTRB(
+                              10, 4, 0, 20), // give padding
+                          child: Text(
+                            'Give',
+                            style: TextStyle(
+                              fontSize: 17,
+                              color: Colors.white,
+                              fontWeight: FontWeight.values[2],
+                            ),
+                          ),
                         )
                       else
-                        Text(
-                          'Balanced',
-                          style: TextStyle(fontSize: 18, color: Colors.white),
+                        Padding(
+                          padding: const EdgeInsets.fromLTRB(
+                              10, 4, 0, 20), // balanced padding
+                          child: Text(
+                            'Balanced',
+                            style: TextStyle(
+                              fontSize: 17,
+                              color: Colors.white,
+                              fontWeight: FontWeight.values[2],
+                            ),
+                          ),
                         ),
-                      IconButton(
-                        onPressed: () {
-                          setState(() {
-                            for (int i = 0; i < payments.length; i++) {
-                              if (payments[i].payee == element.payee) {
-                                payments.removeAt(i);
+                    ],
+                  ),
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.fromLTRB(1, 8, 18, 0),
+                        child: Text(
+                          'Rs. ' + element.sum.abs().toString(),
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 24,
+                            fontWeight: FontWeight.values[3],
+                          ),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.fromLTRB(1, 0, 6, 0),
+                        child: IconButton(
+                          onPressed: () {
+                            setState(() {
+                              for (int i = 0; i < payments.length; i++) {
+                                if (payments[i].payee == element.payee) {
+                                  payments.removeAt(i);
+                                }
                               }
-                            }
-                          });
-                        },
-                        icon: Icon(
-                          Icons.done_rounded,
-                          size: 15,
-                          color: Colors.white,
+                            });
+                          },
+                          icon: Icon(
+                            Icons.done_rounded,
+                            size: 28,
+                            color: Colors.white,
+                          ),
                         ),
                       ),
                     ],
@@ -122,11 +174,11 @@ class _HomeState extends State<Home> {
                 size: 20,
               ))
         ],
-        backgroundColor: Colors.white,
+        backgroundColor: Color(0xFFF6F6F6),
         elevation: 0,
       ),
       body: Container(
-        color: Colors.white,
+        color: Color(0xFFF6F6F6),
         child: ListView(
           children: generator(payments),
         ),

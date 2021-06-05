@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "201012723152",
+    "project_id": "pay-share-fbafc",
+    "storage_bucket": "pay-share-fbafc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:201012723152:android:063c9fa7e6c56616180dd5",
+        "android_client_info": {
+          "package_name": "com.example.pay_share"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "201012723152-qtmjbeie4svp27b7abnfkiapbemod478.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.pay_share",
+            "certificate_hash": "e57b737a6e49af9ce520ccb462cfdb566a191cc0"
+          }
+        },
+        {
+          "client_id": "201012723152-ntbvo3os1p0292dmssq0evltdrk0v432.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBcDr4_b9U0NKdPhDfQpTzYNldCIwbpZ2g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "201012723152-ntbvo3os1p0292dmssq0evltdrk0v432.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
