@@ -1,4 +1,4 @@
-# pay_share
+# Pay_Share
 
 A new Flutter project.
 
