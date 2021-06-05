@@ -4,6 +4,8 @@ import 'package:pay_share/models/payment.dart';
 import 'package:pay_share/models/paymentdetails.dart';
 import 'package:pay_share/screens/addpayee.dart';
 import 'package:pay_share/screens/particularpayment.dart';
+import 'package:pay_share/screens/wrapper.dart';
+import 'package:pay_share/services/auth.dart';
 
 class Home extends StatefulWidget {
   List<PaymentDetails> payments;
@@ -13,6 +15,8 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  final AuthService _auth = AuthService();
+
   List<PaymentDetails> payments;
   _HomeState(this.payments);
 
@@ -159,7 +163,7 @@ class _HomeState extends State<Home> {
         automaticallyImplyLeading: false,
         title: Text(
           'Pay Share',
-          style: TextStyle(fontSize: 25),
+          style: TextStyle(fontSize: 25, color: Colors.black),
         ),
         actions: [
           IconButton(
@@ -172,6 +176,18 @@ class _HomeState extends State<Home> {
               icon: Icon(
                 Icons.add,
                 size: 20,
+                color: Colors.black,
+              )),
+          IconButton(
+              onPressed: () async {
+                await _auth.signOut();
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => Wrapper()));
+              },
+              icon: Icon(
+                Icons.logout_rounded,
+                size: 20,
+                color: Colors.black,
               ))
         ],
         backgroundColor: Color(0xFFF6F6F6),

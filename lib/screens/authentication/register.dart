@@ -43,7 +43,10 @@ class _RegisterState extends State<Register> {
               ],
               backgroundColor: Color.fromARGB(255, 252, 241, 237),
               elevation: 0.0,
-              title: Text('Register to Enola app'),
+              title: Text(
+                'Register to Pay Share',
+                style: TextStyle(color: Colors.black),
+              ),
             ),
             body: Container(
               padding: EdgeInsets.symmetric(

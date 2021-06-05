@@ -44,7 +44,10 @@ class _SignInState extends State<SignIn> {
               ],
               backgroundColor: Color.fromARGB(255, 252, 241, 237),
               elevation: 0.0,
-              title: Text('Sign in to Enola App'),
+              title: Text(
+                'Sign in to Pay Share',
+                style: TextStyle(color: Colors.black),
+              ),
             ),
             body: Container(
               padding: EdgeInsets.symmetric(

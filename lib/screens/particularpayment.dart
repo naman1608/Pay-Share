@@ -1,3 +1,4 @@
+// @dart=2.9
 import 'package:flutter/material.dart';
 import 'package:pay_share/models/payment.dart';
 import 'package:pay_share/models/paymentdetails.dart';
