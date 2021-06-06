@@ -31,6 +31,8 @@ class _HomeState extends State<Home> {
         c1 = Color(0xFF90AF17);
       else
         c1 = Color(0xFF2DBBD8);
+
+      c1 = Colors.blue;
       out.add(GestureDetector(
         onTap: () {
           Navigator.push(
@@ -161,42 +163,46 @@ class _HomeState extends State<Home> {
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        title: Text(
-          'Pay Share',
-          style: TextStyle(fontSize: 25, color: Colors.black),
+        title: Padding(
+          padding: const EdgeInsets.fromLTRB(5, 0, 0, 0),
+          child: Text(
+            'Pay Share',
+            style: TextStyle(fontSize: 23, color: Colors.black87),
+          ),
         ),
         actions: [
           IconButton(
-              onPressed: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => AddPayee(payments)));
-              },
-              icon: Icon(
-                Icons.add,
-                size: 20,
-                color: Colors.black,
-              )),
+            onPressed: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => AddPayee(payments)));
+            },
+            icon: Icon(
+              Icons.add,
+              size: 25,
+              color: Colors.black87,
+            ),
+          ),
           IconButton(
-              onPressed: () async {
-                await _auth.signOut();
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => Wrapper()));
-              },
-              icon: Icon(
-                Icons.logout_rounded,
-                size: 20,
-                color: Colors.black,
-              ))
+            padding: EdgeInsets.fromLTRB(0, 0, 4, 0),
+            onPressed: () async {
+              await _auth.signOut();
+              Navigator.push(
+                  context, MaterialPageRoute(builder: (context) => Wrapper()));
+            },
+            icon: Icon(
+              Icons.logout_rounded,
+              size: 25,
+              color: Colors.black87,
+            ),
+          )
         ],
-        backgroundColor: Color(0xFFF6F6F6),
+        backgroundColor: Color(0xFFFCFCFC),
         elevation: 0,
       ),
       body: Container(
-        color: Color(0xFFF6F6F6),
+        color: Color(0xFFFCFCFC),
         child: ListView(
-          children: generator(payments),
+          children: <Widget>[Container(height: 10)] + generator(payments),
         ),
       ),
     );

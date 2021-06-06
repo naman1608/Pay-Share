@@ -3,7 +3,8 @@ class ParticularPayment {
   int amount;
   String reason;
   int due;
-  ParticularPayment(this.amount, this.reason, this.due);
+  DateTime date;
+  ParticularPayment(this.amount, this.reason, this.due, this.date);
 }
 
 class PaymentDetails {

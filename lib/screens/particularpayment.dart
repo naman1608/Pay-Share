@@ -23,43 +23,50 @@ class _DetailsState extends State<Details> {
     for (int i = 0; i < s.length; i++) {
       if (s[i].payee == user) {
         s[i].paymentdetails.forEach((element) {
-          out.add(Card(
-            child: Column(
-              children: [
-                Row(
-                  children: [
-                    Text(element.reason),
-                    Text(element.amount.toString())
-                  ],
-                ),
-                Row(
-                  children: [
-                    if (element.amount < 0)
-                      Text(
-                        'Due',
-                        style: TextStyle(fontSize: 18, color: Colors.white),
-                      )
-                    else if (element.amount > 0)
-                      Text(
-                        'Give',
-                        style: TextStyle(fontSize: 18, color: Colors.white),
-                      )
-                    else
-                      Text(
-                        'Balanced',
-                        style: TextStyle(fontSize: 18, color: Colors.white),
+          out.add(Padding(
+            padding: const EdgeInsets.fromLTRB(9, 5, 9, 5),
+            child: Card(
+              color: Colors.blue,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(9),
+              ),
+              child: Column(
+                children: [
+                  Row(
+                    children: [
+                      Text(element.reason),
+                      Text(element.amount.toString())
+                    ],
+                  ),
+                  Row(
+                    children: [
+                      if (element.amount < 0)
+                        Text(
+                          'Due',
+                          style: TextStyle(fontSize: 18, color: Colors.white),
+                        )
+                      else if (element.amount > 0)
+                        Text(
+                          'Give',
+                          style: TextStyle(fontSize: 18, color: Colors.white),
+                        )
+                      else
+                        Text(
+                          'Balanced',
+                          style: TextStyle(fontSize: 18, color: Colors.white),
+                        ),
+                      IconButton(
+                        onPressed: () {},
+                        icon: Icon(
+                          Icons.done_rounded,
+                          size: 15,
+                          color: Colors.white,
+                        ),
                       ),
-                    IconButton(
-                      onPressed: () {},
-                      icon: Icon(
-                        Icons.done_rounded,
-                        size: 15,
-                        color: Colors.white,
-                      ),
-                    ),
-                  ],
-                )
-              ],
+                    ],
+                  )
+                ],
+              ),
             ),
           ));
         });
@@ -72,24 +79,46 @@ class _DetailsState extends State<Details> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Color(0xFFFCFCFC),
         automaticallyImplyLeading: false,
         leading: IconButton(
           onPressed: () {
             Navigator.push(context,
                 MaterialPageRoute(builder: (context) => Home(payments)));
           },
-          icon: Icon(Icons.arrow_back_ios_new_rounded),
+          icon: Icon(
+            Icons.arrow_back_ios_new_rounded,
+            color: Colors.black87,
+            size: 25,
+          ),
         ),
-        title: Text(this.user),
+        elevation: 0,
+        title: Transform(
+          transform: Matrix4.translationValues(-16, 0.0, 0.0),
+          child: Text(
+            this.user,
+            style: TextStyle(
+              color: Colors.black87,
+              fontSize: 22,
+            ),
+          ),
+        ),
         actions: [
-          IconButton(
-              onPressed: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => AddPayment(user, payments)));
-              },
-              icon: Icon(Icons.add))
+          Padding(
+            padding: const EdgeInsets.fromLTRB(0, 0, 6, 0),
+            child: IconButton(
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => AddPayment(user, payments)));
+                },
+                icon: Icon(
+                  Icons.add,
+                  color: Colors.black87,
+                  size: 26,
+                )),
+          )
         ],
       ),
       body: ListView(

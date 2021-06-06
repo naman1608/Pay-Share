@@ -24,47 +24,96 @@ class _AddPayeeState extends State<AddPayee> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.white,
-        title: Text('Add User'),
+        leading: IconButton(
+          onPressed: () {
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => Home(paymentlist)));
+          },
+          icon: Icon(
+            Icons.arrow_back_ios_new_rounded,
+            color: Colors.black87,
+            size: 21,
+          ),
+        ),
+        elevation: 0,
+        backgroundColor: Color(0xFFFCFCFC),
+        /*title: Transform(
+          transform: Matrix4.translationValues(-16, 0.0, 0.0),
+          child: Text(
+            'Add Account',
+            textAlign: TextAlign.left,
+            style: TextStyle(
+              color: Colors.black87,
+              fontSize: 22,
+            ),
+          ),
+        ),*/
       ),
       body: Container(
+        padding: EdgeInsets.symmetric(
+          vertical: 25,
+          horizontal: 45,
+        ),
         child: Form(
             key: _formKey,
             child: Column(
               children: [
-                SizedBox(height: 20),
-                TextFormField(
-                  decoration: textInputDecoration.copyWith(hintText: 'Name'),
-                  validator: (val) {
-                    if (val.isEmpty) {
-                      return 'Enter a name';
-                    } else {
-                      return null;
-                    }
-                  },
-                  onChanged: (val) {
-                    setState(() {
-                      payee = val;
-                    });
-                  },
-                ),
-                ElevatedButton(
-                  onPressed: () async {
-                    if (_formKey.currentState.validate()) {
-                      paymentlist.add(PaymentDetails(payee, [], 0));
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => Home(paymentlist)));
-                    }
-                  },
-                  child: Text(
-                    'Add',
-                    style: TextStyle(color: Colors.white),
+                SizedBox(height: 50),
+                Container(
+                  height: 50,
+                  child: TextFormField(
+                    maxLines: 1,
+                    decoration: textInputDecoration.copyWith(
+                      hintText: 'Name',
+                      hintStyle: TextStyle(
+                        color: Color(0xFF9E9E9E),
+                        fontSize: 15,
+                      ),
+                    ),
+                    validator: (val) {
+                      if (val.isEmpty) {
+                        return 'Enter a valid name';
+                      } else {
+                        return null;
+                      }
+                    },
+                    onChanged: (val) {
+                      setState(() {
+                        payee = val;
+                      });
+                    },
                   ),
-                  style: ButtonStyle(
-                    backgroundColor:
-                        MaterialStateProperty.all<Color>(Colors.pink),
+                ),
+                SizedBox(
+                  height: 40,
+                ),
+                SizedBox(
+                  width: 305,
+                  height: 47,
+                  child: ElevatedButton(
+                    onPressed: () async {
+                      if (_formKey.currentState.validate()) {
+                        paymentlist.add(PaymentDetails(payee, [], 0));
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => Home(paymentlist)));
+                      }
+                    },
+                    child: Padding(
+                      padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
+                      child: Text(
+                        'Add Account',
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 16,
+                            fontWeight: FontWeight.w400),
+                      ),
+                    ),
+                    style: ButtonStyle(
+                      backgroundColor:
+                          MaterialStateProperty.all<Color>(Colors.blue),
+                    ),
                   ),
                 ),
               ],
