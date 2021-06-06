@@ -24,48 +24,128 @@ class _DetailsState extends State<Details> {
       if (s[i].payee == user) {
         s[i].paymentdetails.forEach((element) {
           out.add(Padding(
-            padding: const EdgeInsets.fromLTRB(9, 5, 9, 5),
+            padding: const EdgeInsets.fromLTRB(12, 6, 12, 6),
             child: Card(
+              margin: EdgeInsets.fromLTRB(1, 1, 1, 1), // card margin
               color: Colors.blue,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(9),
               ),
-              child: Column(
-                children: [
-                  Row(
-                    children: [
-                      Text(element.reason),
-                      Text(element.amount.toString())
-                    ],
-                  ),
-                  Row(
-                    children: [
-                      if (element.amount < 0)
-                        Text(
-                          'Due',
-                          style: TextStyle(fontSize: 18, color: Colors.white),
-                        )
-                      else if (element.amount > 0)
-                        Text(
-                          'Give',
-                          style: TextStyle(fontSize: 18, color: Colors.white),
-                        )
-                      else
-                        Text(
-                          'Balanced',
-                          style: TextStyle(fontSize: 18, color: Colors.white),
+              child: Padding(
+                padding: const EdgeInsets.fromLTRB(1, 1, 1, 1),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.fromLTRB(10, 11, 0, 0),
+                          child: Text(
+                            element.date.day.toString() +
+                                '/' +
+                                element.date.month.toString() +
+                                '/' +
+                                element.date.year.toString() +
+                                ' ' +
+                                element.reason,
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 21,
+                              fontWeight: FontWeight.values[3],
+                            ),
+                          ),
                         ),
-                      IconButton(
-                        onPressed: () {},
-                        icon: Icon(
-                          Icons.done_rounded,
-                          size: 15,
-                          color: Colors.white,
+                        if (element.amount < 0)
+                          Padding(
+                            padding: const EdgeInsets.fromLTRB(10, 4, 0, 20),
+                            child: Text(
+                              'Due',
+                              style: TextStyle(
+                                fontSize: 17,
+                                color: Colors.white,
+                                fontWeight: FontWeight.values[2],
+                                fontFamily: 'Lato-Light',
+                              ),
+                            ),
+                          )
+                        else if (element.amount > 0)
+                          Padding(
+                            padding: const EdgeInsets.fromLTRB(10, 4, 0, 20),
+                            child: Text(
+                              'Give',
+                              style: TextStyle(
+                                fontSize: 17,
+                                color: Colors.white,
+                                fontWeight: FontWeight.values[2],
+                                fontFamily: 'Lato-Light',
+                              ),
+                            ),
+                          )
+                        else
+                          Padding(
+                            padding: const EdgeInsets.fromLTRB(10, 4, 0, 20),
+                            child: Text(
+                              'Balanced',
+                              style: TextStyle(
+                                fontSize: 17,
+                                color: Colors.white,
+                                fontWeight: FontWeight.values[2],
+                                fontFamily: 'Lato-Light',
+                              ),
+                            ),
+                          ),
+                      ],
+                    ),
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.fromLTRB(1, 15, 11, 0),
+                          child: Text(
+                            'Rs. ' + element.amount.toString(),
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 21,
+                              fontWeight: FontWeight.values[3],
+                            ),
+                          ),
                         ),
-                      ),
-                    ],
-                  )
-                ],
+                        IconButton(
+                          onPressed: () {
+                            setState(() {
+                              for (int i = 0; i < payments.length; i++) {
+                                if (payments[i].payee == user) {
+                                  for (int j = 0;
+                                      j < payments[i].paymentdetails.length;
+                                      j++) {
+                                    if (payments[i].paymentdetails[j].amount ==
+                                            element.amount &&
+                                        payments[i].paymentdetails[j].due ==
+                                            element.due &&
+                                        payments[i].paymentdetails[j].reason ==
+                                            element.reason &&
+                                        payments[i].paymentdetails[j].date ==
+                                            element.date) {
+                                      payments[i].paymentdetails.removeAt(j);
+                                    }
+                                  }
+                                }
+                              }
+                            });
+                          },
+                          icon: Icon(
+                            Icons.done_rounded,
+                            size: 24,
+                            color: Colors.white,
+                          ),
+                        ),
+                      ],
+                    )
+                  ],
+                ),
               ),
             ),
           ));
@@ -122,7 +202,12 @@ class _DetailsState extends State<Details> {
         ],
       ),
       body: ListView(
-        children: generator(payments),
+        children: <Widget>[
+              SizedBox(
+                height: 15,
+              )
+            ] +
+            generator(payments),
       ),
     );
   }

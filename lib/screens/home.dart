@@ -41,7 +41,7 @@ class _HomeState extends State<Home> {
                   builder: (context) => Details(element.payee, s)));
         },
         child: Padding(
-          padding: const EdgeInsets.fromLTRB(10, 6, 10, 6), // card padding
+          padding: const EdgeInsets.fromLTRB(12, 6, 12, 6), // card padding
           child: Card(
             margin: EdgeInsets.fromLTRB(1, 1, 1, 1), // card margin
             color: c1,
@@ -60,7 +60,7 @@ class _HomeState extends State<Home> {
                     children: [
                       Padding(
                         padding: const EdgeInsets.fromLTRB(
-                            10, 14, 0, 0), // name padding
+                            10, 11, 0, 0), // name padding
                         child: Text(
                           element.payee,
                           style: TextStyle(
@@ -113,37 +113,34 @@ class _HomeState extends State<Home> {
                     ],
                   ),
                   Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
                       Padding(
-                        padding: const EdgeInsets.fromLTRB(1, 8, 18, 0),
+                        padding: const EdgeInsets.fromLTRB(1, 15, 11, 0),
                         child: Text(
                           'Rs. ' + element.sum.abs().toString(),
                           style: TextStyle(
                             color: Colors.white,
-                            fontSize: 24,
+                            fontSize: 21,
                             fontWeight: FontWeight.values[3],
                           ),
                         ),
                       ),
-                      Padding(
-                        padding: const EdgeInsets.fromLTRB(1, 0, 6, 0),
-                        child: IconButton(
-                          onPressed: () {
-                            setState(() {
-                              for (int i = 0; i < payments.length; i++) {
-                                if (payments[i].payee == element.payee) {
-                                  payments.removeAt(i);
-                                }
+                      IconButton(
+                        onPressed: () {
+                          setState(() {
+                            for (int i = 0; i < payments.length; i++) {
+                              if (payments[i].payee == element.payee) {
+                                payments.removeAt(i);
                               }
-                            });
-                          },
-                          icon: Icon(
-                            Icons.done_rounded,
-                            size: 28,
-                            color: Colors.white,
-                          ),
+                            }
+                          });
+                        },
+                        icon: Icon(
+                          Icons.done_rounded,
+                          size: 24,
+                          color: Colors.white,
                         ),
                       ),
                     ],
@@ -202,7 +199,7 @@ class _HomeState extends State<Home> {
       body: Container(
         color: Color(0xFFFCFCFC),
         child: ListView(
-          children: <Widget>[Container(height: 10)] + generator(payments),
+          children: <Widget>[Container(height: 15)] + generator(payments),
         ),
       ),
     );
