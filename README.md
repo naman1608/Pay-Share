@@ -1,16 +1,26 @@
 # Pay_Share
 
-A new Flutter project.
+The app allows the user to keep track of how much and for what they owe someone or someone ows them. Following is the functionality of the app.
 
-## Getting Started
+## Register and Log In using Email
 
-This project is a starting point for a Flutter application.
+Users can Sign Up or Sign In using their Email. Handled using Firebase Authentication.
+![Sign Up](/screenshots/flutter_06.png)
+![Log In](/screenshots/flutter_05.png)
 
-A few resources to get you started if this is your first Flutter project:
+## Add and remove a person 
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+The app displays the list of all the people the user owes or they owe the user along with the total amount. Any item on the list can be removed by pressing the 'tick' icon on the item card. The user can also add an account/person using the '+' icon on the appbar.
+![List of People](/screenshots/flutter_07.png)
+![Add Account](/screenshots/flutter_08.png)
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## View the details of expenses with a specific person
+
+When clicked on the account/person, the app shows the details of all the expenses for which you owe or they owe you along with the details such as the date of the expense and for what it was.
+![View expenses](/screenshots/flutter_03.png)
+
+
+## Add or remove an expense
+
+The user can add an expense using the '+' icon in the appbar. Clicking the icon shows a form which asks for the details such as amount, date and reason. An expense can be removed from the list by pressing the 'tick' icon on the expense card.
+![Add Expense](/screenshots/flutter_04.png)
