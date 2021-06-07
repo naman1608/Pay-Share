@@ -37,7 +37,7 @@ class _AddPayeeState extends State<AddPayee> {
         ),
         elevation: 0,
         backgroundColor: Color(0xFFFCFCFC),
-        /*title: Transform(
+        title: Transform(
           transform: Matrix4.translationValues(-16, 0.0, 0.0),
           child: Text(
             'Add Account',
@@ -47,7 +47,7 @@ class _AddPayeeState extends State<AddPayee> {
               fontSize: 22,
             ),
           ),
-        ),*/
+        ),
       ),
       body: Container(
         padding: EdgeInsets.symmetric(
